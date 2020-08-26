@@ -33,10 +33,18 @@ var response = {
     "updated_at": "2020-08-23T14:28:27Z"
     }
 
-var getUserRepos = function() {
-    fetch("https://api.github.com/users/octocat/repos");
-}
+    var getUserRepos = function(user) {
+        // format the github api url
+        var apiUrl = "https://api.github.com/users/" + user + "/repos";
+      
+        // make a request to the url
+        fetch(apiUrl).then(function(response) {
+          response.json().then(function(data) {
+            console.log(data);
+          });
+        });
+      };
 
 console.log(response.location);
 console.log(response.followers);
-getUserRepos();
+getUserRepos("microsoft");
